@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple Game</title>
+	<style>
+		#game-area {
+			width: 400px;
+			height: 400px;
+			position: relative;
+			border: 1px solid black;
+		}
+		#target {
+			width: 50px;
+			height: 50px;
+			position: absolute;
+			background-color: red;
+			border-radius: 50%;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<h1>Simple Game</h1>
+	<p>Click the target to score points!</p>
+	<p>Score: <span id="score">0</span></p>
+	<div id="game-area">
+		<div id="target"></div>
+	</div>
+
+	<script>
+		// set up variables
+		var score = 0;
+		var gameArea = document.getElementById('game-area');
+		var target = document.getElementById('target');
+
+		// move the target randomly every 1 second
+		setInterval(function() {
+			var x = Math.floor(Math.random() * (gameArea.offsetWidth - target.offsetWidth));
+			var y = Math.floor(Math.random() * (gameArea.offsetHeight - target.offsetHeight));
+			target.style.left = x + 'px';
+			target.style.top = y + 'px';
+		}, 1000);
+
+		// add event listener to target
+		target.addEventListener('click', function() {
+			score += 10;
+			document.getElementById('score').innerText = score;
+		});
+	</script>
+</body>
+</html>
